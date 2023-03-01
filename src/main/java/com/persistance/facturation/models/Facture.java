@@ -29,6 +29,9 @@ public class Facture {
 
     @Column(name = "date", nullable = false)
     private Instant date;
+
+    @Column(name = "numero", nullable = false)
+    private String name;
     @OneToMany(mappedBy = "idFacture")
     private Collection<Contient> contients = new LinkedHashSet<>();
 
