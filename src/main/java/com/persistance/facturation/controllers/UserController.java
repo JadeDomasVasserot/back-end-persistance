@@ -34,7 +34,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/id/{idUsere}")
+    @GetMapping("/id/{idUser}")
     //@Operation(summary = "récupère un utilisateur")
     public ResponseEntity<Optional<User>> getUserById(@PathVariable("idUser") int idUser) {
         try {

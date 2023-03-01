@@ -27,7 +27,7 @@ public class RoleController {
 
     }
 
-    @GetMapping("/id/{idRolee}")
+    @GetMapping("/id/{idRole}")
     //@Operation(summary = "récupère un utilisateur")
     public ResponseEntity<Optional<Role>> getRoleById(@PathVariable("idRole") int idRole) {
         try {
