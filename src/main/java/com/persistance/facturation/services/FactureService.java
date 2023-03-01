@@ -1,6 +1,7 @@
 package com.persistance.facturation.services;
 
 import com.persistance.facturation.models.Facture;
+import com.persistance.facturation.models.User;
 import com.persistance.facturation.repositories.FactureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -89,5 +90,20 @@ public class FactureService {
         catch (Exception ex) {
             System.out.print(ex);
         }
+    }
+
+    public List<Facture> findAllFactureByUser(int idUser)
+    {
+        var listFac = new ArrayList<Facture>().stream().toList();
+        try{
+            listFac = this.factureRepository.findFacByUser(idUser);
+            if (listFac.size() < 1) {
+                throw new Exception("Impossible de récupérer les factures ou la liste des factures est vide");
+            }
+        }
+        catch (Exception ex) {
+            System.out.print(ex);
+        }
+        return listFac;
     }
 }

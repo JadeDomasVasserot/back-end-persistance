@@ -84,4 +84,16 @@ public class FactureController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/getall/{idUser}")
+    public ResponseEntity getAllFactureByUser(@PathVariable("iduser") int idUser)
+    {
+        try{
+            var listFac = factureService.findAllFactureByUser(idUser);
+            return new ResponseEntity(listFac, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
