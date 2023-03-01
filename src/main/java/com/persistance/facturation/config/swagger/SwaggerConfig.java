@@ -1,4 +1,4 @@
-package com.mspr.arosaje.config.swagger;
+package com.persistance.facturation.config.swagger;
 
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;

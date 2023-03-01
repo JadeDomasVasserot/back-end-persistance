@@ -1,6 +1,6 @@
-package com.mspr.arosaje.config.config;
+package com.persistance.facturation.config.config;
 
-import com.mspr.arosaje.repositories.PersonneRepository;
+import com.persistance.facturation.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-  private final PersonneRepository personneRepository;
+  private final UserRepository userRepository;
 
   @Bean
   public UserDetailsService userDetailsService() {
-    return username -> personneRepository.getByEmail(username)
+    return username -> userRepository.findByEmailIgnoreCase(username)
+            //getByEmail(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
 

@@ -1,9 +1,9 @@
-package com.mspr.arosaje.config.auth;
+package com.persistance.facturation.config.auth;
 
-import com.mspr.arosaje.config.config.JwtService;
-import com.mspr.arosaje.models.PersonneModel;
-import com.mspr.arosaje.repositories.PersonneRepository;
-import com.mspr.arosaje.repositories.RoleRepository;
+import com.persistance.facturation.config.config.JwtService;
+import com.persistance.facturation.models.*;
+import com.persistance.facturation.repositories.RoleRepository;
+import com.persistance.facturation.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,12 +19,12 @@ import java.util.concurrent.TimeUnit;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final PersonneRepository personneRepository;
+    private final UserRepository personneRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
-    private PersonneModel currentUser;
+    private User currentUser;
     private String jwtToken;
 
     public String getJwtToken() {
@@ -35,32 +35,29 @@ public class AuthenticationService {
         jwtToken = jwtToken;
     }
 
-    public PersonneModel getCurrentUser() {
+    public User getCurrentUser() {
         return currentUser;
     }
 
-    public void setCurrentUser(PersonneModel currentUser) {
+    public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
 
-    public AuthenticationResponse register(RegisterRequest request) {
-        Date date = new Date();
-        PersonneModel user = PersonneModel.builder()
-                .nom(request.getLastname())
-                .prenom(request.getFirstname())
-                .email(request.getEmail())
-                .mdp(passwordEncoder.encode(request.getPassword()))
-                .cp(request.getCp())
-                .ville((request.getVille()))
-                .adresse(request.getAdresse())
-                .role(roleRepository.findById(1).get())
-                .build();
-        personneRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
-    }
+//    public AuthenticationResponse register(RegisterRequest request) {
+//        Date date = new Date();
+//        User user = User.builder()
+//                .nom(request.getLastname())
+//                .prenom(request.getFirstname())
+//                .email(request.getEmail())
+//                .mdp(passwordEncoder.encode(request.getPassword()))
+//                .role(roleRepository.findById(1).get())
+//                .build();
+//        personneRepository.save(user);
+//        var jwtToken = jwtService.generateToken(user);
+//        return AuthenticationResponse.builder()
+//                .token(jwtToken)
+//                .build();
+//    }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
@@ -69,21 +66,21 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        PersonneModel user = personneRepository.getByEmail(request.getEmail())
+        User user = personneRepository.findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow();
-        if (new BCryptPasswordEncoder().matches(request.getPassword(), user.getMdp()) && user.isEnabled()) {
+        if (new BCryptPasswordEncoder().matches(request.getPassword(), user.getPassword()) && user.isEnabled()) {
             jwtToken = jwtService.generateToken(user);
             currentUser = user;
             return AuthenticationResponse.builder()
                     .token(jwtToken)
                     .idUser(currentUser.getId())
-                    .role(currentUser.getRole().getId())
+                    .role(currentUser.getIdRole().getId())
                     .build();
         }
         return null;
     }
 
-    public void disconnect(PersonneModel portalUser) {
+    public void disconnect(User portalUser) {
         CompletableFuture.delayedExecutor(30, TimeUnit.SECONDS).execute(() -> {
 
         });

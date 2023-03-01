@@ -1,4 +1,4 @@
-package com.mspr.arosaje.config.config;
+package com.persistance.facturation.config.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

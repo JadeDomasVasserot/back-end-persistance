@@ -1,4 +1,4 @@
-package com.mspr.arosaje.config.config;
+package com.persistance.facturation.config.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
