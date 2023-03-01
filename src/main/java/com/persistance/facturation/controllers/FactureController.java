@@ -32,7 +32,7 @@ public class FactureController {
         }
     }
 
-    @GetMapping("/getone")
+    @GetMapping("/getone/{idFacture}")
     public ResponseEntity<Facture> getFactureById(@PathVariable("idFacture") int idFac)
     {
         try{
@@ -49,7 +49,7 @@ public class FactureController {
         }
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public ResponseEntity addFacture(@RequestBody Facture facture)
     {
         try{
@@ -61,7 +61,7 @@ public class FactureController {
         }
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping("/delete/{idFacture}")
     public ResponseEntity deleteFacture(@PathVariable("idFacture") int idFac)
     {
         try{
@@ -73,7 +73,7 @@ public class FactureController {
         }
     }
 
-    @GetMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity updateFacture(@RequestBody Facture facture)
     {
         try{
