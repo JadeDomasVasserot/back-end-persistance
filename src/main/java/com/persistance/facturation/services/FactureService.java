@@ -15,7 +15,7 @@ import java.util.Optional;
 public class FactureService {
 
     FactureRepository factureRepository;
-    public List<Facture> findAll(){
+    public List<Facture> findAllFacture(){
         var listFac = new ArrayList<Facture>().stream().toList();
         try {
             listFac = this.factureRepository.findAll();
@@ -29,7 +29,7 @@ public class FactureService {
         return listFac;
     }
 
-    public Facture findOne(int id){
+    public Facture findOneFacture(int id){
         var facture = new Facture();
         try {
             var fac = this.factureRepository.findById(id);
