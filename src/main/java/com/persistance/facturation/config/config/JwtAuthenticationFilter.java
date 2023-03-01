@@ -1,7 +1,7 @@
-package com.mspr.arosaje.config.config;
+package com.persistance.facturation.config.config;
 
-import com.mspr.arosaje.models.PersonneModel;
-import com.mspr.arosaje.repositories.PersonneRepository;
+import com.persistance.facturation.models.User;
+import com.persistance.facturation.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
   private final JwtService jwtService;
   private final UserDetailsService userDetailsService;
-  private final PersonneRepository personneRepository;
+  private final UserRepository userRepository;
 
   @Override
   protected void doFilterInternal(
@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     userEmail = jwtService.extractUsername(jwt);
     if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
       UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-      Optional<PersonneModel> portalUser = this.personneRepository.getByEmail(userEmail);
+      Optional<User> portalUser = this.userRepository.findByEmailIgnoreCase(userEmail);
       if (jwtService.isTokenValid(jwt, userDetails) && portalUser.isPresent()) {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 userDetails,

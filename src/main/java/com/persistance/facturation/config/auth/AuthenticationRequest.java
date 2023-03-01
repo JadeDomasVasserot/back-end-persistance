@@ -1,4 +1,4 @@
-package com.mspr.arosaje.config.auth;
+package com.persistance.facturation.config.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

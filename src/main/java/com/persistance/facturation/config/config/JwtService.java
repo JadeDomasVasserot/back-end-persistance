@@ -1,4 +1,4 @@
-package com.mspr.arosaje.config.config;
+package com.persistance.facturation.config.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
