@@ -1,7 +1,7 @@
 package com.persistance.facturation.services;
 
-import com.persistance.facturation.models.Role;
-import com.persistance.facturation.repositories.RoleRepository;
+import com.persistance.facturation.data.models.Role;
+import com.persistance.facturation.data.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

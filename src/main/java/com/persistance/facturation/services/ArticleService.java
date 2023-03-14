@@ -1,18 +1,25 @@
 package com.persistance.facturation.services;
 
-import com.persistance.facturation.models.Article;
-import com.persistance.facturation.models.Role;
-import com.persistance.facturation.repositories.ArticleRepository;
+import com.persistance.facturation.data.models.Article;
+import com.persistance.facturation.data.repositories.ArticleRepository;
+import com.persistance.facturation.services.converters.ArticleConverter;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.awt.geom.Arc2D;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ArticleService {
+    private final ArticleRepository articleRepository;
 
-    private ArticleRepository articleRepository;
+    private final ArticleConverter articleConverter;
+
+    public ArticleService(ArticleRepository articleRepository, ArticleConverter articleConverter){
+        this.articleRepository = articleRepository;
+        this.articleConverter = articleConverter;
+    }
 
     public List<Article> findAll(){
         return this.articleRepository.findAll();

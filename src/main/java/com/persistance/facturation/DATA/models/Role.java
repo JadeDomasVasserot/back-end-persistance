@@ -1,4 +1,4 @@
-package com.persistance.facturation.models;
+package com.persistance.facturation.data.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter

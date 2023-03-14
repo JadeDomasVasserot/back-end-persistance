@@ -1,7 +1,7 @@
 package com.persistance.facturation.controllers;
 
 
-import com.persistance.facturation.models.Facture;
+import com.persistance.facturation.data.models.Facture;
 import com.persistance.facturation.services.FactureService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,11 @@ import java.util.List;
 
 public class FactureController {
 
-    private FactureService factureService;
+    private final FactureService factureService;
+
+    public FactureController(FactureService factureService) {
+        this.factureService = factureService;
+    }
 
     @GetMapping("/getall")
     public ResponseEntity<List<Facture>> getAllFacture()
@@ -28,7 +32,7 @@ public class FactureController {
             return new ResponseEntity<>(listFacture, HttpStatus.OK);
         }
         catch (Exception ex){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -41,11 +45,11 @@ public class FactureController {
                 return new ResponseEntity<>(facture, HttpStatus.OK);
             }
             else {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
         catch (Exception ex){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -54,10 +58,10 @@ public class FactureController {
     {
         try{
             factureService.addFacture(facture);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception ex){
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -66,10 +70,10 @@ public class FactureController {
     {
         try{
             factureService.deleteFacture(idFac);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception ex){
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -78,10 +82,10 @@ public class FactureController {
     {
         try{
             factureService.modifyFacture(facture);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception ex){
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -90,10 +94,10 @@ public class FactureController {
     {
         try{
             var listFac = factureService.findAllFactureByUser(idUser);
-            return new ResponseEntity(listFac, HttpStatus.OK);
+            return new ResponseEntity<>(listFac, HttpStatus.OK);
         }
         catch (Exception ex){
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.persistance.facturation.controllers;
 
-import com.persistance.facturation.models.Article;
+import com.persistance.facturation.data.models.Article;
 import com.persistance.facturation.services.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-//@CrossOrigin(origins = {"http://127.0.0.1:8081", "http://127.0.0.1:3000"})
 @RequestMapping("/article")
 @RestController
-//@Tag(name = "Personne ")
 public class ArticleController {
 
-    private ArticleService articleService;
+    private final ArticleService articleService;
+
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
+    }
+
 
     @GetMapping("/all")
     //@Operation(summary = "récupère tous les articles")
@@ -27,12 +30,12 @@ public class ArticleController {
             }
             return new ResponseEntity<>(articles, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-    @GetMapping("/id/{idArticlee}")
+    @GetMapping("/id/{idArticle}")
     //@Operation(summary = "récupère un article")
     public ResponseEntity<Optional<Article>> getArticleById(@PathVariable("idArticle") int idArticle) {
         try {
@@ -43,7 +46,7 @@ public class ArticleController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -53,7 +56,7 @@ public class ArticleController {
         try {
             return new ResponseEntity<>(articleService.addArticle(article), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

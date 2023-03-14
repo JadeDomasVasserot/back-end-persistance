@@ -1,7 +1,7 @@
 package com.persistance.facturation.services;
 
-import com.persistance.facturation.models.Contient;
-import com.persistance.facturation.repositories.ContientRepository;
+import com.persistance.facturation.data.models.Contient;
+import com.persistance.facturation.data.repositories.ContientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

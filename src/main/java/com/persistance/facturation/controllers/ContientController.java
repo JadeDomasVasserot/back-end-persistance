@@ -1,6 +1,6 @@
 package com.persistance.facturation.controllers;
 
-import com.persistance.facturation.models.Contient;
+import com.persistance.facturation.data.models.Contient;
 import com.persistance.facturation.services.ContientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,11 @@ import java.util.Optional;
 //@Tag(name = "Contient ")
 public class ContientController {
 
-    private ContientService contientService;
+    private final ContientService contientService;
+
+    public ContientController(ContientService contientService) {
+        this.contientService = contientService;
+    }
 
     @GetMapping("/all")
     //@Operation(summary = "récupère tous les liaisons")
@@ -27,12 +31,12 @@ public class ContientController {
             }
             return new ResponseEntity<>(contients, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-    @GetMapping("/id/{idContiente}")
+    @GetMapping("/id/{idContient}")
     //@Operation(summary = "récupère une liaison")
     public ResponseEntity<Optional<Contient>> getContientById(@PathVariable("idContient") int idContient) {
         try {
@@ -43,7 +47,7 @@ public class ContientController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -53,7 +57,7 @@ public class ContientController {
         try {
             return new ResponseEntity<>(contientService.addContient(contient), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

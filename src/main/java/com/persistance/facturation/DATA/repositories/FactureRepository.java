@@ -1,7 +1,6 @@
-package com.persistance.facturation.repositories;
+package com.persistance.facturation.data.repositories;
 
-import com.persistance.facturation.models.Facture;
-import com.persistance.facturation.models.User;
+import com.persistance.facturation.data.models.Facture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

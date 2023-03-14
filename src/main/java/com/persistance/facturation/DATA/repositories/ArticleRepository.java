@@ -1,6 +1,6 @@
-package com.persistance.facturation.repositories;
+package com.persistance.facturation.data.repositories;
 
-import com.persistance.facturation.models.Article;
+import com.persistance.facturation.data.models.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {

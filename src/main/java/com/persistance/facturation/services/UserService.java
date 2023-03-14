@@ -1,13 +1,8 @@
 package com.persistance.facturation.services;
 
-import com.persistance.facturation.models.User;
-import com.persistance.facturation.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.persistance.facturation.data.models.User;
+import com.persistance.facturation.data.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;

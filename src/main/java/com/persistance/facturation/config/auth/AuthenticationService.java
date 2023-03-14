@@ -1,9 +1,10 @@
 package com.persistance.facturation.config.auth;
 
+import com.persistance.facturation.data.models.*;
+import com.persistance.facturation.data.models.User;
+import com.persistance.facturation.data.repositories.RoleRepository;
+import com.persistance.facturation.data.repositories.UserRepository;
 import com.persistance.facturation.config.config.JwtService;
-import com.persistance.facturation.models.*;
-import com.persistance.facturation.repositories.RoleRepository;
-import com.persistance.facturation.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package com.persistance.facturation.models;
+package com.persistance.facturation.data.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
