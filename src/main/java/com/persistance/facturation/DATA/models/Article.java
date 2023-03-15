@@ -19,24 +19,22 @@ import java.util.LinkedHashSet;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "article")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Basic
     @Column(name = "nom", nullable = false, length = 45)
     private String nom;
 
+    @Basic
     @Column(name = "description", length = 500)
     private String description;
 
+    @Basic
     @Column(name = "prix", nullable = false, precision = 10)
     private BigDecimal prix;
-
-    @OneToMany(mappedBy = "idArticle")
-    @JsonIgnore
-    private Collection<Contient> contients = new LinkedHashSet<>();
 
 }

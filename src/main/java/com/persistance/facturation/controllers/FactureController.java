@@ -89,7 +89,7 @@ public class FactureController {
     }
 
     @GetMapping("/getall/{idUser}")
-    public ResponseEntity<List<Facture>> getAllFactureByUser(@PathVariable("iduser") int idUser)
+    public ResponseEntity<List<Facture>> getAllFactureByUser(@PathVariable("idUser") int idUser)
     {
         try{
             var listFac = factureService.findAllFactureByUser(idUser);

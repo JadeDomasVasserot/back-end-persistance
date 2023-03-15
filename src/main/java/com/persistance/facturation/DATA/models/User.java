@@ -20,32 +20,32 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Table(name = "user")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Basic
     @Column(name = "nom", nullable = false, length = 100)
     private String nom;
 
+    @Basic
     @Column(name = "prenom", nullable = false, length = 100)
     private String prenom;
 
+    @Basic
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
+    @Basic
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "id_role", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private com.persistance.facturation.data.models.Role idRole;
-
-    @OneToMany(mappedBy = "user")
-    private Collection<com.persistance.facturation.data.models.Facture> factures = new LinkedHashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -16,7 +16,7 @@ import java.util.LinkedHashSet;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "role")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,5 @@ public class Role {
 
     @Column(name = "label", length = 45)
     private String label;
-
-    @OneToMany(mappedBy = "idRole")
-    private Collection<User> users = new LinkedHashSet<>();
 
 }

@@ -13,22 +13,23 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "contient")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class Contient {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id", columnDefinition = "INT UNSIGNED not null")
+    @Column(name = "id", columnDefinition = "INT")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_facture", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Facture idFacture;
+    @ManyToOne
+    @JoinColumn(name = "id_facture", referencedColumnName = "id",nullable = false)
+    private com.persistance.facturation.data.models.Facture idFacture;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_article", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Article idArticle;
+    @ManyToOne
+    @JoinColumn(name = "id_article",referencedColumnName = "id",  nullable = false)
+    private com.persistance.facturation.data.models.Article idArticle;
 
+    @Basic
     @Column(name = "quantite", nullable = false)
     private Integer quantite;
 

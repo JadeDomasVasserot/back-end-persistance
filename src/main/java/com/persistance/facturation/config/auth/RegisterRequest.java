@@ -15,7 +15,4 @@ public class RegisterRequest {
   private String lastname;
   private String email;
   private String password;
-  private int cp;
-  private String ville;
-  private String adresse;
 }

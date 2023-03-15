@@ -19,27 +19,27 @@ import java.util.LinkedHashSet;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "facture")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
     private User user;
 
+    @Basic
     @Column(name = "date", nullable = false)
     private Instant date;
 
+    @Basic
     @Column(name = "numero", nullable = false)
     private String name;
-    @OneToMany(mappedBy = "idFacture")
-    private Collection<Contient> contients = new LinkedHashSet<>();
 
     @NotNull
+    @Basic
     @Column(name = "total", nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
 

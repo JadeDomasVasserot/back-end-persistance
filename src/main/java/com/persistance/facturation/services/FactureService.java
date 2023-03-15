@@ -75,7 +75,6 @@ public class FactureService {
             {
                 Facture facMod = factureToModif.get();
                 facMod.setDate(facture.getDate());
-                facMod.setContients(facture.getContients());
                 facMod.setUser(facture.getUser());
                 facMod.setName(facture.getName());
                 this.factureRepository.save(facMod);

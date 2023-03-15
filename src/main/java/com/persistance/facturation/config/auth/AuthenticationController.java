@@ -21,20 +21,20 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService service;
 
-//    @PostMapping("/register")
-//    @Operation(summary = "permet à un utilisateur de s'enregistrer")
-//    public ResponseEntity<AuthenticationResponse> register(
-//            @RequestBody RegisterRequest request
-//    ) {
-//        try {
-//            return new ResponseEntity<AuthenticationResponse>(service.register(request), HttpStatus.OK);
-//        } catch (final HttpClientErrorException e) {
-//            System.err.println(e.getStatusCode());
-//            System.err.println(e.getResponseBodyAsString());
-//            return new ResponseEntity<>(
-//                    e.getStatusCode());
-//        }
-//    }
+    @PostMapping("/register")
+    @Operation(summary = "permet à un utilisateur de s'enregistrer")
+    public ResponseEntity<AuthenticationResponse> register(
+            @RequestBody RegisterRequest request
+    ) {
+        try {
+            return new ResponseEntity<AuthenticationResponse>(service.register(request), HttpStatus.OK);
+        } catch (final HttpClientErrorException e) {
+            System.err.println(e.getStatusCode());
+            System.err.println(e.getResponseBodyAsString());
+            return new ResponseEntity<>(
+                    e.getStatusCode());
+        }
+    }
 
     @PostMapping("/authenticate")
     @Operation(summary = "permet à un utilisateur de se connecter")
