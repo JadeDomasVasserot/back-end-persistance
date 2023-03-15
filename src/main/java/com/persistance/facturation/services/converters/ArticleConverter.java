@@ -1,7 +1,7 @@
 package com.persistance.facturation.services.converters;
 
-import com.persistance.facturation.data.dto.ArticleDto;
-import com.persistance.facturation.data.models.Article;
+import com.persistance.facturation.DATA.dto.ArticleDto;
+import com.persistance.facturation.DATA.models.Article;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

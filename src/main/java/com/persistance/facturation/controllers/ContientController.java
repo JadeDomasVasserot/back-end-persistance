@@ -1,6 +1,6 @@
 package com.persistance.facturation.controllers;
 
-import com.persistance.facturation.data.models.Contient;
+import com.persistance.facturation.DATA.models.Contient;
 import com.persistance.facturation.services.ContientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

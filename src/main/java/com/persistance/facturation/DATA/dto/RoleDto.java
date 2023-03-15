@@ -1,6 +1,6 @@
-package com.persistance.facturation.data.dto;
+package com.persistance.facturation.DATA.dto;
 
-import com.persistance.facturation.data.models.Role;
+import com.persistance.facturation.DATA.models.Role;
 import lombok.*;
 
 import java.io.Serializable;

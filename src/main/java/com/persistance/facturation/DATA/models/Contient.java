@@ -1,4 +1,4 @@
-package com.persistance.facturation.data.models;
+package com.persistance.facturation.DATA.models;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
@@ -23,11 +23,11 @@ public class Contient {
 
     @ManyToOne
     @JoinColumn(name = "id_facture", referencedColumnName = "id",nullable = false)
-    private com.persistance.facturation.data.models.Facture idFacture;
+    private com.persistance.facturation.DATA.models.Facture idFacture;
 
     @ManyToOne
     @JoinColumn(name = "id_article",referencedColumnName = "id",  nullable = false)
-    private com.persistance.facturation.data.models.Article idArticle;
+    private com.persistance.facturation.DATA.models.Article idArticle;
 
     @Basic
     @Column(name = "quantite", nullable = false)

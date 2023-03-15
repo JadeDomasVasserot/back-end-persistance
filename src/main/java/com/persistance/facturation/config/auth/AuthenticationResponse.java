@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
 
     private String token;
-    private com.persistance.facturation.data.models.User idUser;
+    private com.persistance.facturation.DATA.models.User idUser;
 }

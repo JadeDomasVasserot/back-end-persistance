@@ -1,4 +1,4 @@
-package com.persistance.facturation.data.models;
+package com.persistance.facturation.DATA.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;

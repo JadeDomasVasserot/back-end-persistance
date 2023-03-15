@@ -1,7 +1,7 @@
 package com.persistance.facturation.config.config;
 
 import com.persistance.facturation.DATA.repositories.UserRepository;
-import com.persistance.facturation.data.models.User;
+import com.persistance.facturation.DATA.models.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

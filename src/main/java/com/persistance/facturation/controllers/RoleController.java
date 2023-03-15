@@ -1,6 +1,6 @@
 package com.persistance.facturation.controllers;
 
-import com.persistance.facturation.data.models.Role;
+import com.persistance.facturation.DATA.models.Role;
 import com.persistance.facturation.services.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

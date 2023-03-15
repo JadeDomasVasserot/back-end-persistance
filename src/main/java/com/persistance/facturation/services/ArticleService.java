@@ -1,7 +1,7 @@
 package com.persistance.facturation.services;
 
-import com.persistance.facturation.data.models.Article;
-import com.persistance.facturation.data.repositories.ArticleRepository;
+import com.persistance.facturation.DATA.models.Article;
+import com.persistance.facturation.DATA.repositories.ArticleRepository;
 import com.persistance.facturation.services.converters.ArticleConverter;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

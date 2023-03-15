@@ -1,7 +1,7 @@
 package com.persistance.facturation.services;
 
-import com.persistance.facturation.data.models.Facture;
-import com.persistance.facturation.data.repositories.FactureRepository;
+import com.persistance.facturation.DATA.models.Facture;
+import com.persistance.facturation.DATA.repositories.FactureRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;

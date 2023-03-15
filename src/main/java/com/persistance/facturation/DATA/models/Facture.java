@@ -1,4 +1,4 @@
-package com.persistance.facturation.data.models;
+package com.persistance.facturation.DATA.models;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
@@ -28,7 +28,7 @@ public class Facture {
 
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
-    private com.persistance.facturation.data.models.User user;
+    private com.persistance.facturation.DATA.models.User user;
 
     @Basic
     @Column(name = "date", nullable = false)

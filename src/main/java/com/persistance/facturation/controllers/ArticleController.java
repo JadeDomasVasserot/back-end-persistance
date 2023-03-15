@@ -1,6 +1,6 @@
 package com.persistance.facturation.controllers;
 
-import com.persistance.facturation.data.models.Article;
+import com.persistance.facturation.DATA.models.Article;
 import com.persistance.facturation.services.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,17 +60,17 @@ public class ArticleController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     //@Operation(summary = "modifie un article")
-    public ResponseEntity<Article> updateArticle(@RequestBody Article newArticle, @PathVariable("id") int id) {
-        Article updatedArticle = articleService.findById(id).map(article -> {
+    public ResponseEntity<Article> updateArticle(@RequestBody Article newArticle) {
+        Article updatedArticle = articleService.findById(newArticle.getId()).map(article -> {
             article.setNom(newArticle.getNom());
             article.setPrix(newArticle.getPrix());
             article.setDescription(newArticle.getDescription());
             return articleService.updateArticle(article);
 
         }).orElseGet(() -> {
-            newArticle.setId(id);
+            newArticle.setId(newArticle.getId());
             return articleService.addArticle(newArticle);
         });
 
