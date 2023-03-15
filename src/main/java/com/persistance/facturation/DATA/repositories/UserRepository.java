@@ -1,4 +1,4 @@
-package com.persistance.facturation.data.repositories;
+package com.persistance.facturation.DATA.repositories;
 
 import com.persistance.facturation.data.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;

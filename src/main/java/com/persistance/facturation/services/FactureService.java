@@ -91,7 +91,7 @@ public class FactureService {
     public List<Facture> findAllFactureByUser(int idUser) {
         List<Facture> listFac = null;
         try {
-            listFac = this.factureRepository.findFacByUser(idUser);
+            listFac = this.factureRepository.findByUser_Id(idUser);
             if (listFac.isEmpty()) {
                 throw new Exception("Impossible de récupérer les factures ou la liste des factures est vide");
             }

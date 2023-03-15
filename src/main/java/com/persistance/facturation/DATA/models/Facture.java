@@ -28,7 +28,7 @@ public class Facture {
 
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
-    private User user;
+    private com.persistance.facturation.data.models.User user;
 
     @Basic
     @Column(name = "date", nullable = false)

@@ -1,9 +1,9 @@
 package com.persistance.facturation.config.auth;
 
 
+import com.persistance.facturation.DATA.repositories.UserRepository;
 import com.persistance.facturation.data.models.User;
 import com.persistance.facturation.data.repositories.RoleRepository;
-import com.persistance.facturation.data.repositories.UserRepository;
 import com.persistance.facturation.config.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
