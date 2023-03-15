@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://127.0.0.1:8081", "http://127.0.0.1:3000"})

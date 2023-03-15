@@ -10,7 +10,11 @@ import java.util.Optional;
 @Service
 public class ContientService {
 
-    private ContientRepository contientRepository;
+    private final ContientRepository contientRepository;
+
+    public ContientService(ContientRepository contientRepository) {
+        this.contientRepository = contientRepository;
+    }
 
     public List<Contient> findAll(){
         return this.contientRepository.findAll();
@@ -37,6 +41,6 @@ public class ContientService {
     }
 
     public List<Contient> findAllByFacture(int idFacture) {
-        return contientRepository.findByIdFacture_Id(idFacture);
+        return this.contientRepository.findByIdFacture_Id(idFacture);
     }
 }
