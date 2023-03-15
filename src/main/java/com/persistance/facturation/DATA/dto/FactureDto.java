@@ -4,6 +4,7 @@ import com.persistance.facturation.data.models.Facture;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Collection;
 
@@ -20,4 +21,6 @@ public class FactureDto implements Serializable {
     private Instant date;
     private String name;
     private Collection<ContientDto> contients;
+
+    private BigDecimal total;
 }

@@ -36,4 +36,7 @@ public class ContientService {
         this.contientRepository.deleteAll();
     }
 
+    public List<Contient> findAllByFacture(int idFacture) {
+        return contientRepository.findByIdFacture_Id(idFacture);
+    }
 }

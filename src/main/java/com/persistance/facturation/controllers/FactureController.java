@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://127.0.0.1:8081", "http://127.0.0.1:3000"})
@@ -94,6 +95,17 @@ public class FactureController {
     {
         try{
             var listFac = factureService.findAllFactureByUser(idUser);
+            return new ResponseEntity<>(listFac, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/getAllFactureByDate/{date}")
+    public ResponseEntity<List<Facture>> getAllFactureByDate(@PathVariable("date") String date){
+        try{
+            List<Facture> listFac = this.factureService.findAllFactureByDate(date);
             return new ResponseEntity<>(listFac, HttpStatus.OK);
         }
         catch (Exception ex){

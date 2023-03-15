@@ -94,4 +94,16 @@ public class ContientController {
 
     }
 
+    @GetMapping("/allFromFacture/{idFacture}")
+    public ResponseEntity<List<Contient>> getAllContientFromFacture(@PathVariable("idFacture") int idFacture) {
+        try {
+            List<Contient> contients = contientService.findAllByFacture(idFacture);
+            if (contients.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(contients, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

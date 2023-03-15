@@ -4,14 +4,20 @@ import com.persistance.facturation.data.models.Facture;
 import com.persistance.facturation.data.repositories.FactureRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class FactureService {
 
-    FactureRepository factureRepository;
+    private final FactureRepository factureRepository;
+
+    public FactureService(FactureRepository factureRepository) {
+        this.factureRepository = factureRepository;
+    }
+
     public List<Facture> findAllFacture(){
         var listFac = new ArrayList<Facture>().stream().toList();
         try {
@@ -88,12 +94,26 @@ public class FactureService {
         }
     }
 
-    public List<Facture> findAllFactureByUser(int idUser)
-    {
-        var listFac = new ArrayList<Facture>().stream().toList();
-        try{
+    public List<Facture> findAllFactureByUser(int idUser) {
+        List<Facture> listFac = null;
+        try {
             listFac = this.factureRepository.findFacByUser(idUser);
-            if (listFac.size() < 1) {
+            if (listFac.isEmpty()) {
+                throw new Exception("Impossible de récupérer les factures ou la liste des factures est vide");
+            }
+        } catch (Exception ex) {
+            System.out.print(ex);
+        }
+        return listFac;
+    }
+
+    public List<Facture> findAllFactureByDate(String date) {
+        List<Facture> listFac = null;
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date dateFormat = formatter.parse(date);
+            listFac = this.factureRepository.findByDateOrderByDateDesc(dateFormat);
+            if (listFac.isEmpty()) {
                 throw new Exception("Impossible de récupérer les factures ou la liste des factures est vide");
             }
         }
