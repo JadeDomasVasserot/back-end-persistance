@@ -49,13 +49,8 @@ public class FactureService {
         return facture;
     }
 
-    public void addFacture(Facture facture){
-        try {
-            this.factureRepository.save(facture);
-        }
-        catch (Exception ex) {
-            System.out.print(ex);
-        }
+    public Facture addFacture(Facture facture){
+        return this.factureRepository.save(facture);
     }
 
     public void deleteFacture(int id){

@@ -9,7 +9,11 @@ import java.util.Optional;
 
 @Service
 public class RoleService {
-    RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+
+    public RoleService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     public List<Role> findAll(){
         return this.roleRepository.findAll();

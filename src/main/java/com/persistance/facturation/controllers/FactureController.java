@@ -54,11 +54,10 @@ public class FactureController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addFacture(@RequestBody Facture facture)
+    public ResponseEntity<Facture> addFacture(@RequestBody Facture facture)
     {
         try{
-            factureService.addFacture(facture);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(factureService.addFacture(facture), HttpStatus.OK);
         }
         catch (Exception ex){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

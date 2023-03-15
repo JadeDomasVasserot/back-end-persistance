@@ -60,11 +60,22 @@ public class ArticleController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     //@Operation(summary = "modifie un article")
-    public ResponseEntity<Article> updateArticle(@RequestBody Article article) {
-        if (article != null) {
-            return new ResponseEntity<>(articleService.updateArticle(article), HttpStatus.OK);
+    public ResponseEntity<Article> updateArticle(@RequestBody Article newArticle, @PathVariable("id") int id) {
+        Article updatedArticle = articleService.findById(id).map(article -> {
+            article.setNom(newArticle.getNom());
+            article.setPrix(newArticle.getPrix());
+            article.setDescription(newArticle.getDescription());
+            return articleService.updateArticle(article);
+
+        }).orElseGet(() -> {
+            newArticle.setId(id);
+            return articleService.addArticle(newArticle);
+        });
+
+        if (updatedArticle != null) {
+            return new ResponseEntity<>(updatedArticle, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

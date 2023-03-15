@@ -101,7 +101,9 @@ public class ContientController {
             if (contients.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(contients, HttpStatus.OK);
+            else {
+                return new ResponseEntity<>(contients, HttpStatus.OK);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
