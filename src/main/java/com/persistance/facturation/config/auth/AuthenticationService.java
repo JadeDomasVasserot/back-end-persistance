@@ -1,6 +1,6 @@
 package com.persistance.facturation.config.auth;
 
-import com.persistance.facturation.data.models.*;
+
 import com.persistance.facturation.data.models.User;
 import com.persistance.facturation.data.repositories.RoleRepository;
 import com.persistance.facturation.data.repositories.UserRepository;
@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -43,21 +44,21 @@ public class AuthenticationService {
         this.currentUser = currentUser;
     }
 
-//    public AuthenticationResponse register(RegisterRequest request) {
-//        Date date = new Date();
-//        User user = User.builder()
-//                .nom(request.getLastname())
-//                .prenom(request.getFirstname())
-//                .email(request.getEmail())
-//                .mdp(passwordEncoder.encode(request.getPassword()))
-//                .role(roleRepository.findById(1).get())
-//                .build();
-//        personneRepository.save(user);
-//        var jwtToken = jwtService.generateToken(user);
-//        return AuthenticationResponse.builder()
-//                .token(jwtToken)
-//                .build();
-//    }
+    public AuthenticationResponse register(RegisterRequest request) {
+        Date date = new Date();
+        User user = User.builder()
+                .nom(request.getLastname())
+                .prenom(request.getFirstname())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .idRole(roleRepository.findById(1).get())
+                .build();
+        personneRepository.save(user);
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
@@ -73,8 +74,7 @@ public class AuthenticationService {
             currentUser = user;
             return AuthenticationResponse.builder()
                     .token(jwtToken)
-                    .idUser(currentUser.getId())
-                    .role(currentUser.getIdRole().getId())
+                    .idUser(currentUser)
                     .build();
         }
         return null;
